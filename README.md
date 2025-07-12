@@ -33,7 +33,7 @@ AI Reconciliation Project/
 └── README.md
 ### 📸 Dashboard Preview
 
-> _You can include a screenshot here later if you'd like._
+
 
 ![Dashboard Screenshot](screenshots/dashboard_preview.png)
 ### 🚀 Deployment Suggestions (Optional)
