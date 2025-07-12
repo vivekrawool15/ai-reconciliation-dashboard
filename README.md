@@ -19,8 +19,9 @@ This project simulates an intelligent SWIFT payment reconciliation tool using AI
 3. Run the dashboard:
    ```bash
    streamlit run scripts/recon_dashboard.py
-   
-   ## 📁 Project Structure
+
+## 📁 Project Structure
+
 AI Reconciliation Project/
 ├── data/
 │   └── swift_flagged_data.csv
@@ -34,7 +35,7 @@ AI Reconciliation Project/
 
 > _You can include a screenshot here later if you'd like._
 
-<!-- ![Dashboard Screenshot](screenshots/dashboard_preview.png) -->
+![Dashboard Screenshot](screenshots/dashboard_preview.png)
 ### 🚀 Deployment Suggestions (Optional)
 
 You can deploy this project using:
