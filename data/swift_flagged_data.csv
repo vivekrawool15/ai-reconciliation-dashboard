@@ -1,6 +1,6 @@
 Transaction_Ref,Sender_BIC,Receiver_BIC,Amount,Currency,Transaction_Date,Beneficiary_Name,Beneficiary_Account,Payment_Purpose,Reconciliation_Status,Exception_Reason
-TRX84502,ABCDUS33XXX,EFGHIN22XXX,34659,JPY,15-04-2025,Rhonda Wong,OPGV36118562156914,Prevent together only.,OK,
-TRX49611,ABCDUS33XXX,EFGHIN22XXX,9201.8,jpy,07-04-2025,Erik Ferguson,GXRE13287884229112,Attack positive.,OK,
+TRX84502,ABCDUS33XXX,EFGHIN22XXX,34659.0,JPY,15-04-2025,Rhonda Wong,OPGV36118562156914,Prevent together only.,OK,
+TRX49611,ABCDUS33XXX,EFGHIN22XXX,9201.8,JPY,07-04-2025,Erik Ferguson,GXRE13287884229112,Attack positive.,OK,
 TRX1247,ABCDUS33XXX,EFGHIN22XXX,93977.5,GBP,25-01-2025,Valerie King,BFNQ73944995276972,Senior change.,OK,
 TRX14286,ABCDUS33XXX,EFGHIN22XXX,826.94,INR,02-03-2025,Dawn Pham,KSQS10170083915944,Whole single agree evening especially.,OK,
 TRX81540,ABCDUS33XXX,EFGHIN22XXX,41277.66,GBP,05-07-2025,Elizabeth Oliver,QYZS09876278781751,Particular join nor many.,OK,
@@ -16,30 +16,34 @@ TRX92798,ABCDUS33XXX,EFGHIN22XXX,61436.69,JPY,02-07-2025,Craig Jones,UBFN6516218
 TRX28262,ABCDUS33XXX,EFGHIN22XXX,16286.37,JPY,15-06-2025,Robert Delgado,MPNV77693183803511,Lose toward too away road.,OK,
 TRX78820,ABCDUS33XXX,EFGHIN22XXX,5276.86,JPY,25-05-2025,Christopher Webb,JYEA28119401636097,Minute carry lawyer hour.,OK,
 TRX77288,ABCDUS33XXX,EFGHIN22XXX,10359.64,USD,22-04-2025,Jordan Smith,XEEZ68280483194729,Hear memory price.,OK,
-TRX55266,ABCDUS33XXX,EFGHIN22XXX,70245.75,EUR,19-04-2025,Leon Koch,YNYO13835393575438,Foreign born save though.,Currency Conflict,"Subject: Important Notice Regarding Your Recent Transaction (ID: TRX55266)
+TRX55266,ABCDUS33XXX,EFGHIN22XXX,70245.75,EUR,19-04-2025,Leon Koch,YNYO13835393575438,Foreign born save though.,Currency Conflict,"Subject: Reconciliation Issue Regarding Your Recent Transaction TRX55266
 
 Dear Valued Client,
 
-I hope this message finds you well. I am writing to you regarding your recent transaction with the ID: TRX55266, with an amount of 70,245.75 EUR. We have encountered an issue that requires your attention.
+I hope this message finds you well. I am writing to provide an update on your recent transaction with ID TRX55266, which was for the sum of 70,245.75 EUR.
 
-The transaction is currently marked with the status 'Currency Conflict'. This typically arises when there has been an inconsistency or discrepancy between the currency type declared in the transaction and the actual currency type processed. In simpler terms, there may have been a misunderstanding or error in the currency used for this transaction.
+We have encountered a currency conflict issue with this transaction. This issue typically arises when the currency of the transaction does not match the currency of the account where the funds are intended to be transferred. It could also be due to a discrepancy in the exchange rates between the two currencies at the time of the transaction.
 
-We understand that this may be causing some inconvenience and we sincerely apologize for this. Our team is already investigating the matter"
-TRX99643,ABCDUS33XXX,EFGHIN22XXX,21529.59,USD,03-03-2025,Sandra Clark,UASV57610569550316,South significant.,Missing Details,"Subject: Request for Additional Information Regarding Transaction ID: TRX99643
+Our team is currently working diligently to resolve this issue. We may need to adjust the transaction to match the currency of your account or apply the correct exchange"
+TRX99643,ABCDUS33XXX,EFGHIN22XXX,21529.59,USD,03-03-2025,Sandra Clark,UASV57610569550316,South significant.,Missing Details,"Subject: Important Information Required for Transaction ID: TRX99643
 
-Dear valued client,
+Dear Client,
 
-I hope this message finds you well. I am reaching out to you regarding a recent transaction with the ID: TRX99643, which was intended for the purpose of 'South significant'. The transaction amount is 21529.59 USD.
+I hope this message finds you well. 
 
-Upon reviewing the transaction, we noticed that there are some missing details which are required to complete the reconciliation process. In order to ensure a smooth and efficient process, it is crucial that we have all the necessary information about the transaction.
+I am writing to inform you that we are currently unable to process your recent transaction with ID: TRX99643, amounting to 21529.59 USD, due to some missing details in the transaction information.
 
-Could you kindly provide us with more specific details regarding the nature of this transaction? This could include information such as the invoice number, the exact date of the transaction, or any other"
-TRX76095,ABCDUS33XXX,EFGHIN22XXX,50937.32,USD,26-05-2025,Austin Herrera,VYGD97866026575563,Upon and our within order.,Amount Mismatch,"Subject: Important Notice Regarding Your Recent Transaction ID: TRX76095
+The transaction is currently listed with the purpose as ""South significant,"" which unfortunately does not provide us with enough information to successfully reconcile the transaction. To ensure the utmost security and compliance with our financial policies, it is crucial that we have a clear understanding of the transaction's purpose.
+
+In order to expedite this process, we kindly ask you to provide more detailed information regarding the purpose of this transaction. This"
+TRX76095,ABCDUS33XXX,EFGHIN22XXX,50937.32,USD,26-05-2025,Austin Herrera,VYGD97866026575563,Upon and our within order.,Amount Mismatch,"Subject: Urgent Attention Required: Discrepancy in Transaction TRX76095
 
 Dear Valued Client,
 
-I hope this message finds you well. I am writing to you regarding your recent transaction with us, Transaction ID: TRX76095.
+I hope this message finds you well. I am reaching out to you regarding a recent transaction with ID TRX76095 that we have noticed requires your immediate attention.
 
-We have been reviewing our transaction records and it appears that there might be a slight discrepancy concerning the amount of this transaction. The transaction was recorded in our system as 50937.32 USD, however, this seems to be inconsistent with the amount we originally agreed upon.
+During our routine financial review, we discovered a discrepancy in the stated amount of the transaction. The recorded amount is $50,937.32 USD, however, this does not match with our internal records for the intended transaction.
 
-This could be due to a simple clerical error or a miscommunication, and I apologize for any inconvenience this may have caused you. We understand the importance of accurate financial transactions and we are committed to resolving this issue as swiftly as possible."
+This discrepancy may be due to an error in data entry, a system glitch, or a miscommunication regarding the transaction amount. We understand that such issues can cause inconvenience and we sincerely apologize for any confusion this may have caused.
+
+In order to rect"
