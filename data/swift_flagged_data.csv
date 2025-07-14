@@ -1,84 +1,173 @@
 Transaction_Ref,Sender_BIC,Receiver_BIC,Amount,Currency,Transaction_Date,Beneficiary_Name,Beneficiary_Account,Payment_Purpose,Reconciliation_Status,Exception_Reason
-TRX12144,ABCDUS33XXX,EFGHIN22XXX,89647.7,EUR,03-03-2025,John Walker,VVJM90240247387793,send to me,Payment_Purpose Mismatch,"Dear Valued Client,
-
-I hope this message finds you well. I am reaching out to you regarding a recent transaction, specifically transaction ID: TRX12144, which is currently showing a status of 'Payment_Purpose Mismatch'. 
-
-The transaction in question involves an amount of 89647.7 EUR and the purpose of the transaction was stated as 'send to me'. It appears that there may have been a misunderstanding or miscommunication regarding the purpose of this transaction.
-
-For us to maintain the highest level of financial integrity and compliance with various financial regulations, it is necessary that all transactions are accurately categorized and described. This is to ensure that all funds are appropriately tracked and accounted for. 
-
-In this case, the description 'send to me' is not sufficiently clear or specific to meet these requirements. We kindly request that you provide a more detailed description of the purpose of this transaction. This could include information such as the reason for the transfer, the relationship between the sender and recipient, or the nature of any goods or services being exchanged.
-
-We understand that this may be an inconvenience and we apologize for any confusion. Our team is here to assist you in resolving this issue as quickly and smoothly as possible. 
-
-Please log into your account and update the purpose of the transaction at your earliest convenience. If you need any assistance or have any questions, please do not hesitate to contact our customer support.
-
-Thank you for your understanding and cooperation in this matter. We appreciate your prompt attention to this issue.
-
-Best regards,
-
-[Your Name]
-[Your Position]"
-TRX12477,ABCDUS33XXX,EFGHIN22XXX,93977.5,GBP,25-01-2025,Valerie King,BFNQ73944995276972,Senior change.,"Sender_BIC Missing, Receiver_BIC Missing, Amount Missing, Currency Missing, Transaction_Date Missing, Beneficiary_Name Missing, Beneficiary_Account Missing, Payment_Purpose Missing","Subject: Urgent Attention Required: Incomplete Transaction Details for Transaction ID: TRX12477
+TRX12144,ABCDUS33XXX,EFGHIN22XXX,89647.7,EUR,03-03-2025,John Walker,VVJM90240247387793,send to me,Payment_Purpose Mismatch,"Subject: Important Notice Regarding Your Recent Transaction TRX12144
 
 Dear Valued Client,
 
-I hope this message finds you well. I am writing to inform you about an issue regarding your recent transaction with ID: TRX12477. 
+I hope this message finds you well. I am writing to inform you about an issue that has arisen with your recent transaction, TRX12144, for the amount of 89647.7 EUR. 
 
-Upon reviewing the transaction, we noticed that some vital information was not included in the transaction details. The missing details include the Sender's Bank Identifier Code (BIC), Receiver's BIC, transaction date, beneficiary name, beneficiary account, and the payment purpose. 
+The transaction has been flagged due to a mismatch between the payment purpose provided and the transaction details. The purpose stated was ""send to me"", which appears to be inconsistent with the transaction details we have on record. This mismatch could be due to a simple error or misunderstanding and we are here to help you rectify it.
 
-Without these details, we are unable to process the transaction and ensure that the funds reach the intended recipient. The absence of these details could also potentially lead to delays or misdirection of funds, which we aim to avoid to ensure a smooth and efficient service.
+It is crucial for our system to have a clear and accurate purpose for each transaction to maintain compliance with financial regulations and to ensure the safety and security of all our clients' funds. 
 
-The transaction in question is for the amount of 93977.5 GBP and is marked with the purpose 'Senior change.' 
+To resolve this issue, we kindly request you to provide a more detailed description of the purpose of the transaction. This could include information such as the nature of the goods or services being paid for, the relationship between the sender and receiver, or any other information that could help clarify the purpose of the payment.
 
-We kindly ask that you review this transaction and provide the missing details at your earliest convenience. Our team is on standby to assist you and to ensure that the transaction is completed promptly once the necessary information is received.
+Please log in to your account and update the transaction details at your earliest convenience. If you need any assistance or have any questions, feel free to reach out to our customer support team. We are more than happy to assist you.
 
-We apologize for any inconvenience this may have caused and appreciate your understanding and prompt attention to this matter. Please do not hesitate to contact us if you have any questions or if you need further assistance.
+We apologize for any inconvenience this may cause and thank you for your understanding and cooperation in this matter. We greatly appreciate your prompt attention to this issue.
 
-Thank you for your cooperation.
+Best Regards,
 
-Best regards,
+[Your Name]
+[Your Position]"
+TRX12477,ABCDUS33XXX,EFGHIN22XXX,93977.5,GBP,25-01-2025,Valerie King,BFNQ73944995276972,Senior change.,"Sender_BIC Missing, Receiver_BIC Missing, Amount Missing, Currency Missing, Transaction_Date Missing, Beneficiary_Name Missing, Beneficiary_Account Missing, Payment_Purpose Missing","Dear Client,
+
+I hope this message finds you well. I am writing to you regarding the recent transaction with ID: TRX12477. It appears that there are some crucial details missing from the transaction which are necessary to ensure a smooth and accurate process.
+
+The missing information includes the Sender's BIC, Receiver's BIC, Amount, Currency, Transaction Date, Beneficiary Name, Beneficiary Account, and Payment Purpose. Although we have a record of the amount being 93977.5 GBP and the payment purpose being a 'Senior change', we are unable to proceed without the rest of the required information.
+
+The BIC (Bank Identifier Code) is a unique identification code for both the sender's and receiver's bank, which is crucial for international transactions. Additionally, the Beneficiary Name and Account are necessary to ensure that the funds reach the correct recipient. The transaction date helps us to keep accurate records and to maintain transparency.
+
+We understand that this might be an oversight, and we are here to assist you in every way possible. Could you please provide us with the missing information at your earliest convenience? This will enable us to process the transaction promptly and accurately.
+
+We appreciate your understanding and cooperation in this matter. If you have any questions or need further assistance, please do not hesitate to contact us.
+
+Thank you for your prompt attention to this matter.
+
+Best Regards,
+[Your Name]"
+TRX12478,ABCDUS33XXX,EFGHIN22XXX,93977.5,GBP,25-01-2025,Valerie King,BFNQ73944995276972,Senior change.,"Sender_BIC Missing, Receiver_BIC Missing, Amount Missing, Currency Missing, Transaction_Date Missing, Beneficiary_Name Missing, Beneficiary_Account Missing, Payment_Purpose Missing","Subject: Urgent Attention Required: Incomplete Transaction Details
+
+Dear Valued Client,
+
+I hope this message finds you well. I am writing to you regarding transaction ID: TRX12478, which appears to have some important information missing.
+
+We have successfully received the transaction amount of 93977.5 GBP, however, there are several key details that are currently missing from the transaction. The missing information includes:
+
+1. Sender BIC
+2. Receiver BIC
+3. Currency
+4. Transaction Date
+5. Beneficiary Name
+6. Beneficiary Account
+7. Payment Purpose
+
+Our system requires these details to successfully process and reconcile the transaction. Without them, we are unable to confirm the sender and receiver, validate the currency, record the transaction date, and understand the payment purpose. This information is critical for our internal record keeping and to ensure compliance with financial regulations.
+
+We understand that this might be an oversight, and we are here to assist you in resolving this issue. To proceed, we kindly request you to provide the missing details at your earliest convenience. You can do so by replying to this email or contacting our customer service team directly at (customer service contact).
+
+We apologize for any inconvenience this may have caused and appreciate your prompt attention to this matter. It is our priority to ensure that your transactions are processed accurately and efficiently.
+
+Thank you for your understanding and cooperation. We look forward to serving you better.
+
+Best Regards, 
 
 [Your Name]
 [Your Position]
 [Your Contact Information]"
-TRX12478,ABCDUS33XXX,EFGHIN22XXX,93977.5,GBP,25-01-2025,Valerie King,BFNQ73944995276972,Senior change.,"Sender_BIC Missing, Receiver_BIC Missing, Amount Missing, Currency Missing, Transaction_Date Missing, Beneficiary_Name Missing, Beneficiary_Account Missing, Payment_Purpose Missing","Subject: Important: Action Required Regarding Your Recent Transaction
+TRX14286,ABCDUS33XXX,EFGHIN22XXX,826.94,INR,02-03-2025,Dawn Pham,KSQS10170083915944,Whole single agree evening especially.,Match,
+TRX22474,ABCDUS33XX,EFGHIN22XXX,24857.57,JPY,03-01-2025,Samantha Curry,KLQL60680279462996,Share first finish tax surface.,Sender_BIC Mismatch,"Dear Valued Client,
+
+I hope this message finds you well. I am writing to you regarding the recent transaction with the ID: TRX22474 for an amount of 24857.57 JPY.
+
+Upon reviewing the transaction, we have found an inconsistency that we believe needs your attention. Specifically, there is a mismatch with the Sender_BIC that was provided. The Bank Identifier Code (BIC) is a unique identification code for a particular bank, which is crucial for the processing of your transaction.
+
+This discrepancy might be due to a typographical error when inputting the BIC or possibly using an outdated or incorrect code. As a result, we were unable to complete your transaction as intended.
+
+To resolve this issue, we kindly ask you to verify the BIC of your bank. If you are unsure of your BIC, it can typically be found on your bank statement or directly from your bank. Once you have the correct BIC, please provide us with the updated information so we can proceed with your transaction.
+
+We apologize for any inconvenience this may have caused. We appreciate your understanding and cooperation in this matter. Please feel free to reach out if you have any questions or need further assistance.
+
+Thank you for your prompt attention to this matter.
+
+Best Regards,
+[Your Name]"
+TRX28262,ABCDUS33XXX,EFGHIN22XXX,16286.37,INR,15-06-2025,Robert Delgado,MPNV77693183803511,Lose toward too away road.,Currency Mismatch,"Dear Client,
+
+I hope this message finds you well. I am writing to you regarding the transaction ID: TRX28262 that you recently initiated. 
+
+It appears that there has been a currency mismatch issue with the transaction. The amount of 16,286.37 INR that you attempted to transfer was not processed due to this discrepancy. This usually happens when there is a mismatch between the currency of the sender's account and the receiver's account. 
+
+For instance, if the sender's account is in USD and the receiver's account is in INR, the transaction may fail due to the currency mismatch. It is important to ensure that both the sender and receiver are operating with the same currency to avoid such issues.
+
+We apologize for any inconvenience this may have caused. To rectify this issue, we kindly request you to check the currency settings in your account and the receiver's. If the issue persists, please do not hesitate to contact our customer service team for further assistance.
+
+Thank you for your understanding and cooperation. We value your business and are committed to providing you with the highest level of service. We look forward to serving you better.
+
+Best Regards,
+[Your Name]"
+TRX49611,ABCDUS33XXX,EFGHIN22XXX,9201.8,INR,07-04-2025,Erik Ferguson,GXRE13287884229112,Attack positive.,Currency Mismatch,"Subject: Important Information Regarding Your Recent Transaction
+
+Dear Valued Client,
+
+I hope this message finds you well. I am writing to you in regards to your recent transaction with the ID: TRX49611. We have noticed a discrepancy in the transaction that requires your immediate attention.
+
+The transaction was for the amount of 9201.8 INR, but it appears there is a currency mismatch issue. This typically happens when the currency of the transaction does not match the currency of the account. As a result, your transaction could not be processed successfully.
+
+We understand the inconvenience this may have caused and we sincerely apologize for this. We take such matters very seriously and are committed to resolving this issue as soon as possible.
+
+To rectify this, we kindly ask you to confirm the currency in which the transaction was intended. If the currency was indeed INR, please ensure that your account is set to handle transactions in this currency. If the transaction was intended to be in a different currency, please provide us with the correct details so we can adjust it accordingly.
+
+We value your business and are always here to support you. Should you require any further assistance or clarification, please do not hesitate to contact our customer service team. You can reach us via email at support@ourbank.com or call us on our toll-free number 1800-123-456.
+
+Thank you for your understanding and cooperation. We look forward to resolving this matter promptly and continuing to serve your banking needs.
+
+Best Regards,
+
+[Your Name]
+[Your Position]"
+TRX53118,ABCDUS33XXX,EFGHIN22XXX,41502.67,GBP,10-04-2025,Den Var,AOMQ34472522313731,Trial down those.,Beneficiary_Name Mismatch,"Subject: Important Information Regarding Your Recent Transaction (ID: TRX53118)
 
 Dear Client,
 
-I hope this message finds you well. I am writing to you in regard to transaction ID: TRX12478 that was recently processed.
+I hope this message finds you well. I am writing to you regarding your recent transaction with ID: TRX53118 for the amount of 41502.67 GBP.
 
-During our routine audit and reconciliation process, we identified some missing information in this transaction that we would like to bring to your attention. The missing details include Sender's BIC, Receiver's BIC, Transaction Date, Beneficiary's Name, Beneficiary's Account, and Payment Purpose.
+During our routine transaction monitoring, we encountered an inconsistency that necessitated our immediate attention and action. The beneficiary name provided in the transaction details does not match the records we have in our system. This discrepancy has consequently led to the status of the transaction being marked as ""Beneficiary_Name Mismatch"".
 
-The amount of the transaction is recorded as 93977.5 GBP and the purpose of the transaction is listed as ""Senior change."" However, without the aforementioned details, we are unable to validate the transaction and ensure it meets all regulatory and compliance requirements.
+Please understand that we have stringent security measures in place to ensure the safety and security of your funds. These measures are designed to prevent unauthorized transactions and potential fraud. Therefore, any inconsistencies, such as a mismatch in the beneficiary's name, can trigger an automatic halt to the transaction as a precaution.
 
-We understand that this situation might be inconvenient for you and we apologize for any confusion. This is a rare occurrence and we are taking steps to prevent such issues in the future.
+To resolve this issue, we kindly request you to review the beneficiary details provided during the transaction. Please ensure that the spelling and order of the name are correct and match exactly with the beneficiary's details as registered in their bank. 
 
-To rectify this situation, we kindly request you to provide the missing details at your earliest convenience. You can do this by logging into your account and updating the transaction details or by contacting our customer service team who are ready to assist you.
+Once you have reviewed and corrected the details, you may initiate the transaction again. If you believe that the details you provided were correct, please get in touch with our customer service team who will be more than happy to assist you in resolving this issue.
 
-We appreciate your understanding and cooperation in this matter. If you have any questions or need further assistance, please do not hesitate to contact us. We are here to ensure your banking experience with us is seamless and hassle-free.
+We apologize for any inconvenience this may have caused. Your understanding and cooperation in this matter are highly appreciated. 
 
-Thank you for choosing us as your financial partner.
+Thank you for choosing our services. We look forward to serving you better.
 
 Best Regards,
 
 [Your Name]
 [Your Position]
 [Your Contact Information]"
-TRX14286,ABCDUS33XXX,EFGHIN22XXX,826.94,INR,02-03-2025,Dawn Pham,KSQS10170083915944,Whole single agree evening especially.,Match,
-TRX22474,ABCDUS33XX,EFGHIN22XXX,24857.57,JPY,03-01-2025,Samantha Curry,KLQL60680279462996,Share first finish tax surface.,Sender_BIC Mismatch,"Subject: Important Notice Regarding Your Recent Transaction - Action Required 
+TRX56693,ABCDUS33XXX,EFGHIN22XXX,24966.88,USD,25-03-2025,Sean Ingram,LWDZ01529655324919,Green college kitchen business occur.,Match,
+TRX64701,ABCDUS33XXX,EFGHIN22XXX,31315.69,EUR,09-01-2025,Amber Cisneros,DMUH71883337236843,Stop face ready.,Match,
+TRX73935,ABCDUS33XXX,EFGHIN22XX,90600.84,EUR,11-04-2025,Donald Mayer,OPSK77701248062088,Sister land affect task about.,Receiver_BIC Mismatch,"Dear Valued Client,
+
+I hope this message finds you well. I am reaching out to discuss a recent transaction you initiated with ID: TRX73935. The transaction was for an amount of 90600.84 EUR with the stated purpose of ""Sister land affect task about.""
+
+Regrettably, the transaction could not be processed due to a mismatch in the Receiver_BIC (Bank Identifier Code). The BIC is a unique code that identifies each bank globally and is critical for international transactions. In this case, it appears that the BIC provided does not match our records for the intended recipient's bank.
+
+We understand the importance of each transaction and apologize for any inconvenience this may have caused. To rectify this issue, we kindly ask that you confirm the correct BIC for the recipient's bank. It would be beneficial to cross-check this information with your recipient to ensure accuracy. Once you have the correct BIC, please resubmit the transaction.
+
+We appreciate your understanding and cooperation in this matter. If you need further assistance or have any questions, please do not hesitate to contact our customer service team. We are here to ensure your banking experience is smooth and hassle-free.
+
+Thank you for choosing our services.
+
+Best Regards,
+[Your Name]"
+TRX81540,ABCDUS33XXX,EFGHIN22XXX,41277.66,GBP,05-07-2025,Elizabeth Oliver,QYZS09876278781751,Particular join nor many.,Match,
+TRX84502,ABCDUS33XXX,EFGHIN22XXX,34659.82,JPY,15-04-2025,Rhonda Wong,OPGV36118562156914,Prevent together only.,Amount Mismatch,"Subject: Important Notice Regarding Your Recent Transaction TRX84502
 
 Dear Valued Client,
 
-I hope this message finds you well. I am writing to you regarding your recent transaction with ID: TRX22474.
+I hope this message finds you well. I am reaching out to discuss an issue that has arisen regarding your recent transaction with ID: TRX84502. 
 
-Unfortunately, the transaction for the amount of 24,857.57 JPY could not be completed due to a discrepancy in the Sender's Bank Identifier Code (BIC). The BIC provided does not match our records, which is a necessary security measure to ensure the authenticity and safety of all financial transactions.
+The transaction, which was intended for the purpose of ""Prevent together only,"" was noted for an amount of 34,659.82 JPY. However, it appears that there is a discrepancy between this amount and the one we have recorded in our system. This has resulted in an amount mismatch, and thus, the transaction could not be completed as initially intended.
 
-The BIC is a unique identification code for a particular bank or financial institution. If the BIC does not match, it could mean that there was a typographical error when entering the code, or it might be outdated. 
+We understand that this might cause some inconvenience and we sincerely apologize for any confusion this might have caused. Our team is currently working diligently to rectify this situation, and we will need your assistance to ensure that the correct amount is recorded and processed.
 
-We kindly ask you to review the BIC you have provided and confirm its accuracy. If you find that the BIC is correct, please contact your bank to verify the code. If the BIC is incorrect, please provide us with the correct one so we can proceed with your transaction.
+To facilitate a quick resolution, we kindly request you to confirm the exact amount that was intended for this transaction. Please cross-check your records and share this information with us at your earliest convenience. Once we receive this information, we will be able to correct the mismatch and proceed with the transaction as planned.
 
-We apologize for any inconvenience this may have caused. Your understanding and cooperation are greatly appreciated. If you have any further questions or need assistance, please do not hesitate to get in touch with our customer service team.
+We appreciate your understanding and cooperation in this matter. If you have any questions or need any further assistance, please do not hesitate to contact us. Our team is always here to help you.
 
 Thank you for your prompt attention to this matter. 
 
@@ -86,148 +175,35 @@ Best Regards,
 
 [Your Name]
 [Your Position]"
-TRX28262,ABCDUS33XXX,EFGHIN22XXX,16286.37,INR,15-06-2025,Robert Delgado,MPNV77693183803511,Lose toward too away road.,Currency Mismatch,"Subject: Urgent Attention Required: Issue with Your Recent Transaction TRX28262
+TRX86879,ABCDUS33XXX,EFGHIN22XXX,74343.94,INR,04-04-2025,Craig Parker,DHPL61780844589,Card husband school prove.,Beneficiary_Account Mismatch,"Dear Client,
 
-Dear Client,
+I hope this message finds you well. I am writing to you regarding the recent transaction you attempted with the ID: TRX86879. The transaction was for an amount of 74343.94 INR and was intended for the purpose of 'Card husband school prove'.
 
-I hope this message finds you well. I am writing to inform you about a discrepancy that has occurred with your recent transaction, ID: TRX28262. 
+Unfortunately, the transaction could not be completed due to a discrepancy we noticed in the beneficiary account details. It appears that the account details provided do not match with our records, which led to the transaction being flagged for security reasons. This is a standard procedure to ensure the safety and security of our clients' funds.
 
-The transaction, which was intended to process an amount of 16286.37 INR, has been flagged in our system due to a currency mismatch. This typically happens when the currency selected for the transaction does not align with the currency of your account or the recipient's account. 
+I understand that this might be inconvenient for you and I apologize for any trouble caused. To resolve this issue, I kindly request you to cross-check the beneficiary account details you have provided. Please ensure that the account number, the name of the account holder, and other relevant details are accurate and match the details of the intended recipient.
 
-For instance, if your account is set up in USD and you attempted to send INR, our system would flag this as a mismatch. Similarly, if the recipient's account is not set up to receive INR, the same issue would occur.
+Once you have verified the details, please attempt the transaction again. If the problem persists, do not hesitate to contact our customer service team. We are available 24/7 and are always ready to assist you.
 
-To resolve this, kindly review the currency settings on your account and ensure that they are correctly aligned with your intended transactions. If you're certain that your settings are correct, it might be worthwhile to reach out to the recipient and confirm their currency settings as well.
-
-We understand that such issues can be inconvenient and we apologize for any disruption this may have caused. Rest assured, we are committed to helping you resolve this as quickly as possible.
-
-Should you need any further assistance or have any questions, we encourage you to reach out to our customer service team either via email or by calling our helpline. We are always here to support you.
-
-Thank you for your understanding and cooperation.
-
-Best regards,
-
-[Your Name]
-[Your Position]
-[Your Contact Information]"
-TRX49611,ABCDUS33XXX,EFGHIN22XXX,9201.8,INR,07-04-2025,Erik Ferguson,GXRE13287884229112,Attack positive.,Currency Mismatch,"Subject: Important Notice Regarding Your Recent Transaction - ID: TRX49611
-
-Dear Client,
-
-I hope this message finds you well. I am writing to inform you about an issue that has arisen with your recent transaction, ID: TRX49611.
-
-The transaction was flagged due to a currency mismatch. The amount of 9201.8 INR appears to have been entered incorrectly or there may have been a misunderstanding about the currency to be used for the transaction. Our system is designed to detect and halt transactions that involve any inconsistency to ensure the safety and accuracy of all financial activities.
-
-To resolve this matter, we kindly ask you to check the currency details of the transaction and ensure they are in line with the requirements of the recipient's account. If you intended to send the amount in a different currency, please make the necessary adjustments and initiate the transaction again. 
-
-We apologize for any inconvenience this might have caused. Our team is committed to making your experience with us as seamless as possible, and we appreciate your understanding as we work to maintain the highest standards of financial security.
-
-If you need any further assistance or if you have any questions, please do not hesitate to contact our customer service team. We are more than happy to help you ensure that your transactions are processed smoothly.
-
-Thank you for your attention to this matter. We look forward to serving you better.
-
-Best Regards,
-
-[Your Name]
-[Your Position]
-[Your Contact Information]"
-TRX53118,ABCDUS33XXX,EFGHIN22XXX,41502.67,GBP,10-04-2025,Den Var,AOMQ34472522313731,Trial down those.,Beneficiary_Name Mismatch,"Dear Client,
-
-I hope this message finds you well. I am reaching out to you in regard to the recent transaction you made with the ID: TRX53118. It appears there has been a slight hiccup with the transaction process that we need to address.
-
-The transaction of 41502.67 GBP for the purpose mentioned as ""Trial down those"" has been flagged in our system due to a mismatch in the beneficiary's name. This discrepancy can sometimes occur due to a typographical error or a mismatch between the name provided and the name we have on file.
-
-It is crucial for us to ensure that all transactions are accurate and secure, hence the need for every detail to align perfectly. We understand that this might be an inconvenience and we sincerely apologize for any confusion caused.
-
-To rectify this issue, we kindly request you to verify and provide the correct name of the beneficiary as it appears on their account. This will enable us to cross-verify the details on our end and process the transaction smoothly.
-
-Please feel free to reach out to our customer service team via email or phone for further assistance. They are always ready and willing to help you through the process.
-
-Thank you for your understanding and cooperation. We appreciate your prompt attention to this matter and look forward to serving you better.
+Thank you for your understanding and cooperation in this matter. We appreciate your patience and we are committed to serving you better.
 
 Best Regards,
 [Your Name]"
-TRX56693,ABCDUS33XXX,EFGHIN22XXX,24966.88,USD,25-03-2025,Sean Ingram,LWDZ01529655324919,Green college kitchen business occur.,Match,
-TRX64701,ABCDUS33XXX,EFGHIN22XXX,31315.69,EUR,09-01-2025,Amber Cisneros,DMUH71883337236843,Stop face ready.,Match,
-TRX73935,ABCDUS33XXX,EFGHIN22XX,90600.84,EUR,11-04-2025,Donald Mayer,OPSK77701248062088,Sister land affect task about.,Receiver_BIC Mismatch,"Dear Client,
-
-I hope this message finds you well. I am writing to inform you about a recent issue that occurred during your transaction with the ID: TRX73935.
-
-The transaction for the amount of 90600.84 EUR was not successfully processed due to a discrepancy in the Receiver_BIC. The Bank Identifier Code (BIC) of the receiver that we have on file does not match the BIC provided during this transaction. The BIC is a unique identification code for a particular bank, which is crucial for the successful processing of international transactions.
-
-This mismatch could be due to a typographical error or an outdated BIC. We kindly request that you verify the BIC with the receiving bank to ensure that the correct and current code is being used. Once you have the correct BIC, please update it in your banking profile or provide it to us for the transaction to proceed smoothly.
-
-We apologize for any inconvenience this may have caused and appreciate your understanding and cooperation in this matter. Your prompt attention to this issue will help us in expediting the transaction process.
-
-Should you have any questions or require further assistance, please do not hesitate to contact our customer support team. We are always here to help you.
-
-Thank you for choosing our services.
-
-Best Regards,
-
-[Your Name]
-[Your Position]"
-TRX81540,ABCDUS33XXX,EFGHIN22XXX,41277.66,GBP,05-07-2025,Elizabeth Oliver,QYZS09876278781751,Particular join nor many.,Match,
-TRX84502,ABCDUS33XXX,EFGHIN22XXX,34659.82,JPY,15-04-2025,Rhonda Wong,OPGV36118562156914,Prevent together only.,Amount Mismatch,"Subject: Important Notice Regarding Your Recent Transaction TRX84502
-
-Dear Client,
-
-I hope this message finds you well. I am writing to you regarding your recent transaction with us, ID: TRX84502, which unfortunately has encountered a minor discrepancy that needs your attention.
-
-Upon reviewing the transaction, we have found that there is a mismatch in the transaction amount. The transaction was recorded at 34,659.82 JPY, which does not align with our internal records. This discrepancy may have occurred due to an error in inputting the transaction amount or a possible system glitch at the time of the transaction.
-
-We understand that this situation may cause some inconvenience and we sincerely apologize for any confusion this may have caused. Our team is committed to ensuring the accuracy and security of all transactions, and we are diligently working to rectify this situation.
-
-To assist us in resolving this issue promptly, could you please review your records and confirm the intended transaction amount? If you have any supporting documents such as receipts or invoices, we kindly request you to forward them to us for our reference.
-
-Once we receive this information, we will be able to make the necessary adjustments to correct the transaction and ensure your account balance is accurate.
-
-Should you have any questions or need further clarification, please do not hesitate to contact us. Our customer service team is ready and happy to assist you.
-
-Thank you for your understanding and cooperation in this matter. We appreciate your prompt attention to this issue and look forward to resolving it as quickly as possible.
-
-Best Regards,
-
-[Your Name]
-[Your Position]
-[Your Contact Information]"
-TRX86879,ABCDUS33XXX,EFGHIN22XXX,74343.94,INR,04-04-2025,Craig Parker,DHPL61780844589,Card husband school prove.,Beneficiary_Account Mismatch,"Subject: Important Notice Regarding Your Recent Transaction (TRX86879)
+TRX91987,ABCDUS33XXX,EFGHIN22XXX,87507.08,USD,08-08-2025,Felicia Poole,FCFJ63984199403301,Way drive summer.,Transaction_Date Mismatch,"Subject: Important Notice Regarding Your Recent Transaction - ID: TRX91987
 
 Dear Valued Client,
 
-I hope this message finds you well. I am writing to you regarding your recent transaction with ID TRX86879, where an amount of 74343.94 INR was intended for transfer.
+I trust this message finds you well. I am reaching out to you regarding your recent transaction with us, bearing the ID: TRX91987. The transaction was for an amount of 87,507.08 USD with the purpose noted as 'Way drive summer'.
 
-Unfortunately, there seems to have been a discrepancy in the process. The transaction status is currently marked as ""Beneficiary_Account Mismatch"". This typically occurs when the details of the beneficiary's account provided do not match with the details we have on record. It is possible that there may have been a typographical error or misunderstanding when entering the account information.
+Upon review of our records, we found a discrepancy concerning the transaction date that was submitted. The date provided does not align with our internal system records, which has resulted in a temporary hold on this transaction. This mismatch could be due to a variety of reasons such as a system error or an incorrect date entry.
 
-We understand that this may cause inconvenience and we sincerely apologize for the disruption. The safety and accuracy of your transactions are our top priority, and we would like to resolve this issue as soon as possible for you.
+We understand that this might be an inconvenience, and we sincerely apologize for any confusion this may have caused. We are committed to ensuring the accuracy and security of all transactions, and as such, we are keen to resolve this issue as swiftly as possible.
 
-To rectify this, we kindly ask you to verify the account details of the intended recipient. Please cross-check the details such as account number, account holder's name, and bank name. Once you have confirmed the details, please re-initiate the transaction.
+To expedite the resolution, we kindly request you to review the transaction details, particularly the date, and provide us with the correct information. You can do this by logging into your account and navigating to the 'Transactions' section, or by getting in touch with our customer service team who are more than willing to assist you through this process.
 
-If you need any assistance during this process, or if you have any other questions or concerns, please do not hesitate to get in touch with our customer service team. We are available 24/7 and would be more than happy to help.
+Once we receive the correct information, we will immediately rectify the discrepancy and your transaction will be processed without further delay.
 
-Thank you for your understanding and cooperation in this matter. We highly appreciate your patience and trust in our services.
-
-Best Regards,
-
-[Your Name]
-[Your Position]
-[Your Contact Information]"
-TRX91987,ABCDUS33XXX,EFGHIN22XXX,87507.08,USD,08-08-2025,Felicia Poole,FCFJ63984199403301,Way drive summer.,Transaction_Date Mismatch,"Subject: Important Update Regarding Your Recent Transaction (ID: TRX91987)
-
-Dear Client,
-
-I hope this message finds you well. I am writing to provide some important information regarding your most recent transaction with us, specifically transaction ID: TRX91987.
-
-Our records indicate that there seems to be a discrepancy with the date of this transaction. This could be due to a number of reasons such as an erroneous entry or a system error. The amount in question is 87507.08 USD and the noted purpose is ""Way drive summer.""
-
-We understand that this might cause some concern, however, please rest assured that we are committed to resolving this issue promptly and efficiently. Our team is currently investigating the cause of this discrepancy and we will do our utmost to rectify this matter as soon as possible.
-
-In order to expedite this process, we kindly request your assistance. If you could please review your records and provide us with the correct date of the transaction, it would be greatly appreciated. This will aid us in cross-verifying our data and ensuring that our records are accurate.
-
-We apologize for any inconvenience this may have caused and we appreciate your understanding and cooperation in this matter. Your satisfaction is our top priority and we are dedicated to ensuring that your transactions with us are carried out smoothly and accurately.
-
-Please feel free to reach out if you have any questions or need further clarification. We are more than happy to assist you.
-
-Thank you for your prompt attention to this matter.
+Thank you for your understanding and cooperation in this matter. Please do not hesitate to contact us if you have any questions or need further assistance. We value your business and look forward to serving you better.
 
 Best Regards,
 
