@@ -1,27 +1,46 @@
 import pandas as pd
 
-# Load incoming and outgoing files
+# Load files
 incoming = pd.read_csv("../data/swift_incoming.csv")
 outgoing = pd.read_csv("../data/swift_outgoing.csv")
 
-# Merge based on Transaction Ref
+# Merge on Transaction_Ref
 merged = pd.merge(incoming, outgoing, on="Transaction_Ref", how="outer", suffixes=('_in', '_out'))
 
-# Define a function to check match
+# All columns to check
+columns_to_check = [
+    "Sender_BIC", "Receiver_BIC", "Amount", "Currency", "Transaction_Date",
+    "Beneficiary_Name", "Beneficiary_Account", "Payment_Purpose"
+]
+
+# Define detailed reconciliation check
 def check_reconciliation(row):
-    if pd.isna(row['Amount_in']) or pd.isna(row['Amount_out']):
-        return "Missing Entry"
-    elif row['Amount_in'] != row['Amount_out']:
-        return "Amount Mismatch"
-    elif row['Currency_in'] != row['Currency_out']:
-        return "Currency Mismatch"
-    else:
+    issues = []
+
+    for col in columns_to_check:
+        col_in = f"{col}_in"
+        col_out = f"{col}_out"
+
+        val_in = row.get(col_in)
+        val_out = row.get(col_out)
+
+        if pd.isna(val_in) or pd.isna(val_out):
+            issues.append(f"{col} Missing")
+        elif str(val_in).strip() != str(val_out).strip():
+            issues.append(f"{col} Mismatch")
+
+    if not issues:
         return "Match"
+    else:
+        return ", ".join(issues)
 
-# Apply function
-merged['Reconciliation_Status'] = merged.apply(check_reconciliation, axis=1)
+# Apply function to each row
+merged["Reconciliation_Status"] = merged.apply(check_reconciliation, axis=1)
 
-# Save output
+# Save result
 merged.to_csv("../data/swift_reconciled.csv", index=False)
 
+# Show total mismatches
+mismatches = merged[merged["Reconciliation_Status"] != "Match"]
 print("✅ Reconciliation completed. Output saved to swift_reconciled.csv")
+print(f"⚠️ Total mismatches found: {len(mismatches)}")

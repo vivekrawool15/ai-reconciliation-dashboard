@@ -1,36 +1,23 @@
-from gpt_helper import generate_ai_reason
 import pandas as pd
-import time
+from gpt_helper import generate_ai_reason
 
-# Load flagged transactions
 df = pd.read_csv("../data/swift_flagged_data.csv")
 
+# Remove any existing reasons
+df["Exception_Reason"] = ""
 
-# Clean up old AI errors from previously skipped rows
-df.loc[df["Reconciliation_Status"].isin(["OK", "Match"]), "Exception_Reason"] = ""
+# Loop only through mismatches (not Match or OK)
+for idx, row in df.iterrows():
+    if row["Reconciliation_Status"] not in ["Match", "OK"]:
+        ref = row["Transaction_Ref"] if pd.notna(row["Transaction_Ref"]) else "Unknown"
+        status = row["Reconciliation_Status"]
+        amount = row["Amount"] if pd.notna(row["Amount"]) else "Unknown"
+        currency = row["Currency"] if pd.notna(row["Currency"]) else "Unknown"
+        purpose = row["Payment_Purpose"] if pd.notna(row["Payment_Purpose"]) else "No purpose provided"
 
-# Generate AI Reason only for mismatched rows
-for i, row in df.iterrows():
-    if row["Reconciliation_Status"] not in ["OK", "Match"]:
-        print(f"Generating for {row['Transaction_Ref']}...")
+        reason = generate_ai_reason(ref, status, amount, currency, purpose)
+        df.at[idx, "Exception_Reason"] = str(reason)
+        print(f"✅ Generated for {ref}")
 
-        try:
-            # You can pass more columns if needed
-            reason = generate_ai_reason(
-                ref=row["Transaction_Ref"],
-                status=row["Reconciliation_Status"],
-                amount=row["Amount"],
-                currency=row["Currency"],
-                purpose=row["Payment_Purpose"]
-            )
-
-            df.at[i, "Exception_Reason"] = reason
-            time.sleep(2)  # Pause to avoid OpenAI rate limit
-
-        except Exception as e:
-            print(f"Error with {row['Transaction_Ref']}: {e}")
-            df.at[i, "Exception_Reason"] = "AI Error: " + str(e)
-
-# Save updated file
 df.to_csv("../data/swift_flagged_data.csv", index=False)
 print("✅ All AI reasons added to swift_flagged_data.csv")

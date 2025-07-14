@@ -7,7 +7,7 @@ __pycache__/
 
 # Ignore Excel/CSV outputs
 *.xlsx
-*.csv
+#*.csv
 
 # Ignore virtual environment (if any)
 venv/
