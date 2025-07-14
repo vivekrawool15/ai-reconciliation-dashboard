@@ -12,14 +12,16 @@ Status: {status}
 Amount: {amount} {currency}
 Purpose: {purpose}
 
-Please generate a professional, human-like explanation to the client for this reconciliation issue.
+Please generate a professional, human-like explanation to the client for this reconciliation issue. 
+Ensure the explanation ends with a polite closing and a call to action for the client.
+
 """
 
     response = openai.ChatCompletion.create(
         model="gpt-4",
         messages=[{"role": "user", "content": prompt}],
         temperature=0.5,
-        max_tokens=150
+        max_tokens=1000
     )
 
     return response.choices[0].message["content"].strip()
