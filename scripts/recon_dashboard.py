@@ -113,30 +113,29 @@ st.dataframe(
 )
 
 
-# 📤 Download Transactions
-st.markdown("### 📤 Download Transactions")
+# 📤 Download Selected Transactions
+st.markdown("### 📤 Download Selected Transactions")
 
 # Excel
 excel_buffer = io.BytesIO()
 display_df.to_excel(excel_buffer, index=False, engine='openpyxl')
 excel_bytes = excel_buffer.getvalue()
-st.markdown("#### 📄 Export as Excel (.xlsx)")
 st.download_button(
-    label="📥 Click here to download Excel",
+    label="📥 Download Selected (Excel)",
     data=excel_bytes,
-    file_name="reconciliation_report.xlsx",
+    file_name="selected_transactions.xlsx",
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 )
 
 # CSV
-st.markdown("#### 🧾 Export as CSV (.csv)")
 csv = display_df.to_csv(index=False).encode("utf-8")
 st.download_button(
-    label="📥 Click here to download CSV",
+    label="📥 Download Selected (CSV)",
     data=csv,
-    file_name="reconciliation_report.csv",
+    file_name="selected_transactions.csv",
     mime="text/csv"
 )
+
 
 # ✉️ 7. Sample Email Preview
 st.markdown("### 📧 Sample Email Preview")
@@ -297,14 +296,15 @@ summary.index += 1  # Make index start from 1
 st.dataframe(summary)
 
 
-# ⬇️ Download All Transactions
-st.markdown("### 📥 Download Filtered Results")
+# ⬇️ Download Complete Report (All Transactions)
+st.markdown("### 📥 Download Complete Report")
 st.download_button(
-    label="Download as CSV",
+    label="📥 Download Full Report (All Data)",
     data=df.to_csv(index=False),
-    file_name='filtered_reconciliation_results.csv',
+    file_name='full_reconciliation_report.csv',
     mime='text/csv'
 )
+
 
 # 🔐 Footer
 st.markdown("---")
