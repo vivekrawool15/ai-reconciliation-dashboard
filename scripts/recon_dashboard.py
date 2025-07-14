@@ -172,12 +172,16 @@ try:
 
     if issue_df.empty:
         most_common_issue = "None"
-    elif issue_df["Reconciliation_Status"].value_counts().nunique() == 1:
-        most_common_issue = "No dominant issue – all occurred equally"
     else:
-        # Use simplified labels for common issue detection
         issue_df["Status_Label"] = issue_df["Reconciliation_Status"].apply(simplify_status)
-        most_common_issue = issue_df["Status_Label"].value_counts().idxmax()
+        issue_counts = issue_df["Status_Label"].value_counts()
+        top_count = issue_counts.iloc[0]
+        most_common_issues = issue_counts[issue_counts == top_count].index.tolist()
+
+        if len(most_common_issues) == 1:
+            most_common_issue = most_common_issues[0]
+        else:
+            most_common_issue = ", ".join(most_common_issues)
 
     ai_summary = f"""
 - Out of **{total_txns}** transactions, **{mismatch_txns}** had issues.
