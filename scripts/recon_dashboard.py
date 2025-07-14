@@ -3,6 +3,8 @@ import streamlit as st
 import plotly.express as px
 import io
 import plotly.graph_objects as go
+import datetime  # ✅ Add this
+
 # 🔧 Page Configuration
 st.set_page_config(page_title="AI Reconciliation Dashboard", layout="wide")
 
@@ -12,6 +14,10 @@ st.markdown("Built by Vivek Rawool – Simulating real-world SWIFT reconciliatio
 
 # 🧾 Load Data
 df = pd.read_csv("data/swift_flagged_data.csv")
+
+# ✅ Show UTC timestamp to confirm this version is latest
+st.caption(f"📅 Deployed at (UTC): {datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')}")
+
 
 # 👇 Create simplified grouping labels
 def simplify_status(status):
