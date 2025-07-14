@@ -1,12 +1,19 @@
 import pandas as pd
+import os
 from gpt_helper import generate_ai_reason
 
-df = pd.read_csv("../data/swift_flagged_data.csv")
+# 📁 Resolve path to data directory
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, "..", "data")
+flagged_path = os.path.join(DATA_DIR, "swift_flagged_data.csv")
 
-# Remove any existing reasons
+# 📥 Load data
+df = pd.read_csv(flagged_path)
+
+# 🧹 Remove old AI reasons
 df["Exception_Reason"] = ""
 
-# Loop only through mismatches (not Match or OK)
+# 🔍 Loop through mismatches
 for idx, row in df.iterrows():
     if row["Reconciliation_Status"] not in ["Match", "OK"]:
         ref = row["Transaction_Ref"] if pd.notna(row["Transaction_Ref"]) else "Unknown"
@@ -19,5 +26,6 @@ for idx, row in df.iterrows():
         df.at[idx, "Exception_Reason"] = str(reason)
         print(f"✅ Generated for {ref}")
 
-df.to_csv("../data/swift_flagged_data.csv", index=False)
+# 💾 Save updated data
+df.to_csv(flagged_path, index=False)
 print("✅ All AI reasons added to swift_flagged_data.csv")
