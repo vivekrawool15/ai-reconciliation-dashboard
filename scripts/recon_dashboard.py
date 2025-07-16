@@ -1,311 +1,294 @@
 import pandas as pd
 import streamlit as st
-import plotly.express as px
-import io
+import datetime
 import plotly.graph_objects as go
-import datetime  # ✅ Add this
+import plotly.express as px
 
-# 🔧 Page Configuration
+# Page Config
 st.set_page_config(page_title="AI Reconciliation Dashboard", layout="wide")
 
-# 🧭 Title and Tagline
+# Title
 st.title("💳 AI-Powered Payment Reconciliation Dashboard")
 st.markdown("Built by Vivek Rawool – Simulating real-world SWIFT reconciliation")
 
-# 🧾 Load Data
-df = pd.read_csv("data/swift_flagged_data.csv")
+st.markdown("### 📥 Download Sample Files")
 
-# ✅ Show UTC timestamp to confirm this version is latest
-st.caption(f"📅 Deployed at (UTC): {datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')}")
-
-
-# 👇 Create simplified grouping labels
-def simplify_status(status):
-    if status == "Match":
-        return "Match"
-    elif "Mismatch" in status:
-        return status.strip()
-    elif "Missing" in status and "," in status:
-        return "Multiple Missing Fields"
-    elif "Missing" in status:
-        return status.strip()
-    else:
-        return "Other"
-
-# 📊 3. KPI Metrics
-total_txns = len(df)
-num_matches = len(df[df["Reconciliation_Status"] == "Match"])
-num_mismatches = len(df[df["Reconciliation_Status"] != "Match"])
-ai_generated = df["Exception_Reason"].apply(lambda x: isinstance(x, str) and len(x.strip()) > 0 and x.strip().lower() != "not applicable").sum()
-
-col1, col2, col3 = st.columns(3)
-col1.metric("Total Transactions", total_txns)
-col2.metric("✅ Matches", num_matches)
-col3.metric("🔴 Mismatches", num_mismatches)
-
-
-# Show all unique statuses, including Match
-status_options = sorted(df["Reconciliation_Status"].dropna().unique())
-status_filter = st.selectbox("Select Reconciliation Status", options=["All"] + list(status_options))
-
-# Filter based on dropdown
-if status_filter == "All":
-    filtered_df = df.copy()
-else:
-    filtered_df = df[df["Reconciliation_Status"] == status_filter]
-
-
-# Currency filter
-currency_options = sorted(filtered_df["Currency"].dropna().unique())
-currency_filter = st.selectbox("Select Currency", options=["All"] + list(currency_options))
-
-# Apply currency filter
-if currency_filter != "All":
-    filtered_df = filtered_df[filtered_df["Currency"] == currency_filter]
-
-# 🧾 Transaction History Table (Styled Dark Mode Friendly)
-st.markdown("### 📋 Transaction History")
-
-# 1. Create display dataframe
-display_df = filtered_df.copy()
-
-# 2. Add readable columns
-display_df["Reconciliation_Result"] = display_df["Reconciliation_Status"].apply(
-    lambda x: "Match" if x == "Match" else "Not Matched"
-)
-
-
-# 👉 Clean up exception reason for display
-def simplify_reason(x):
-    if x == "Match":
-        return "Not Applicable"
-    elif "Missing" in x and "," in x:
-        return "Multiple Missing Fields"
-    elif "Mismatch" in x or "Missing" in x:
-        return x.strip()
-    else:
-        return "Other"
-
-display_df["Exception_Summary"] = display_df["Reconciliation_Status"].apply(simplify_reason)
-
-# 3. Reset index
-display_df = display_df.reset_index(drop=True)
-display_df.index += 1  # Start row count from 1
-
-# 4. Columns to show
-styled_df = display_df[[ 
-    "Transaction_Ref", "Amount", "Currency", "Reconciliation_Result", "Exception_Summary"
-]]
-
-
-# 5. Row-wise dark themed styling
-def highlight_row(row):
-    if row["Reconciliation_Result"] == "Match":
-        return ['background-color: #2c3e50; color: #ffffff'] * len(row)
-    else:
-        return ['background-color: #7f1d1d; color: #ffffff'] * len(row)
-
-
-# 6. Show styled table
-st.dataframe(
-    styled_df.style.apply(highlight_row, axis=1),
-    use_container_width=True
-)
-
-
-# 📤 Download Selected Transactions
-st.markdown("### 📤 Download Selected Transactions")
-
-# Excel
-excel_buffer = io.BytesIO()
-display_df.to_excel(excel_buffer, index=False, engine='openpyxl')
-excel_bytes = excel_buffer.getvalue()
-st.download_button(
-    label="📥 Download Selected (Excel)",
-    data=excel_bytes,
-    file_name="selected_transactions.xlsx",
-    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-)
-
-# CSV
-csv = display_df.to_csv(index=False).encode("utf-8")
-st.download_button(
-    label="📥 Download Selected (CSV)",
-    data=csv,
-    file_name="selected_transactions.csv",
-    mime="text/csv"
-)
-
-
-# ✉️ 7. Sample Email Preview
-st.markdown("### 📧 Sample Email Preview")
-
-# Refine preview behavior
-valid_preview_df = display_df[
-    display_df["Transaction_Ref"].notna() & display_df["Exception_Reason"].notna()
-]
-
-if status_filter == "Match":
-    st.info("✅ These are matched transactions. No email is required.")
-elif status_filter == "All":
-    st.info("ℹ️ Select a specific reconciliation issue above to preview a sample email.")
-elif not valid_preview_df.empty:
-    preview_row = valid_preview_df.iloc[0]
-    st.markdown(f"""
-**To:** client@example.com  
-**Subject:** Issue with Transaction ID: `{preview_row['Transaction_Ref']}`
-
-{preview_row['Exception_Reason']}
-    """)
-else:
-    st.info("⚠️ No valid transaction found with exception reason for email preview.")
-
-
-# 📊 AI Learning & Insights
-st.markdown("## 📊 AI Learning & Insights")
-
-try:
-    # Filter mismatches (exclude OK and Match)
-    issue_df = df[df["Reconciliation_Status"].isin(["OK", "Match"]) == False]
-    mismatch_txns = len(issue_df)
-
-    if issue_df.empty:
-        most_common_issue = "None"
-    else:
-        issue_df["Status_Label"] = issue_df["Reconciliation_Status"].apply(simplify_status)
-        issue_counts = issue_df["Status_Label"].value_counts()
-        top_count = issue_counts.iloc[0]
-        most_common_issues = issue_counts[issue_counts == top_count].index.tolist()
-
-        if len(most_common_issues) == 1:
-            most_common_issue = most_common_issues[0]
-        else:
-            most_common_issue = ", ".join(most_common_issues)
-
-    ai_summary = f"""
-- Out of **{total_txns}** transactions, **{mismatch_txns}** had issues.
-- The most common issue is: **{most_common_issue}**.
-- This indicates a potential area for improvement in transaction accuracy or client instructions.
-    """
-    st.markdown(ai_summary)
-
-except Exception as e:
-    st.warning(f"Could not generate AI summary due to error: {e}")
-
-
-
-# 👇 Create simplified grouping labels
-def simplify_status(status):
-    if status == "Match":
-        return "Match"
-    elif "Mismatch" in status:
-        return status.strip()
-    elif "Missing" in status and "," in status:
-        return "Multiple Missing Fields"
-    elif "Missing" in status:
-        return status.strip()
-    else:
-        return "Other"
-
-# 👇 Add new column
-# 👇 Create simplified grouping labels
-def simplify_status(status):
-    if status == "Match":
-        return "Match"
-    elif "Mismatch" in status:
-        return status.strip()
-    elif "Missing" in status and "," in status:
-        return "Multiple Missing Fields"
-    elif "Missing" in status:
-        return status.strip()
-    else:
-        return "Other"
-
-# Apply to main df and filtered_df both
-df["Status_Label"] = df["Reconciliation_Status"].apply(simplify_status)
-filtered_df["Status_Label"] = filtered_df["Reconciliation_Status"].apply(simplify_status)
-
-# Update Exception Summary in Transaction History Table
-filtered_df["Exception_Reason"] = filtered_df["Status_Label"].apply(
-    lambda x: "Not Applicable" if x == "Match" else x
-)
-
-
-
-
-   # ✅ Bar Chart with Clean Labels + Matching Colors
-import plotly.graph_objects as go
-
-st.markdown("### 🔢 Frequency")
-
-# Count by simplified label
-clean_counts = df["Status_Label"].value_counts().reset_index()
-clean_counts.columns = ["Status", "Count"]
-
-# Define consistent color mapping
-bar_colors = {
-    "Match": "#63b3ed",
-    "Amount Mismatch": "#f56565",
-    "Currency Mismatch": "#ed8936",
-    "Receiver_BIC Mismatch": "#d69e2e",
-    "Sender_BIC Mismatch": "#48bb78",
-    "Beneficiary_Name Mismatch": "#38b2ac",
-    "Beneficiary_Account Mismatch": "#805ad5",
-    "Transaction_Date Mismatch": "#718096",
-    "Payment_Purpose Mismatch": "#fbbf24",
-    "Multiple Missing Fields": "#e53e3e",
-    "Other": "#a0aec0"
+sample_data = {
+    "Transaction_Ref": ["TRX001", "TRX002"],
+    "Sender_BIC": ["BANKINBB", "BANKUS33"],
+    "Receiver_BIC": ["BANKDEFF", "BANKGB22"],
+    "Amount": [1000.50, 750.00],
+    "Currency": ["INR", "USD"],
+    "Transaction_Date": ["2024-01-01", "2024-01-02"],
+    "Beneficiary_Name": ["John Doe", "Jane Smith"],
+    "Beneficiary_Account": ["1234567890", "9876543210"],
+    "Payment_Purpose": ["Salary", "Invoice Payment"]
 }
 
-# Assign matching colors
-colors = [bar_colors.get(status, "#a0aec0") for status in clean_counts["Status"]]
+sample_df = pd.DataFrame(sample_data)
+sample_csv = sample_df.to_csv(index=False).encode("utf-8")
+st.download_button("⬇️ Download Sample File", data=sample_csv, file_name="sample_transaction_file.csv", mime="text/csv")
 
-# Build the bar chart
-fig = go.Figure(data=[
-    go.Bar(
-        x=clean_counts["Status"],
-        y=clean_counts["Count"],
-        marker_color=colors
+# File Upload
+st.markdown("## 📂 Upload Your Files")
+inflow_file = st.file_uploader("🗕️ Upload Inflow File", type=["csv"], key="inflow")
+outflow_file = st.file_uploader("📄 Upload Outflow File", type=["csv"], key="outflow")
+
+# Reset session state if new files are uploaded
+if "prev_inflow" not in st.session_state or inflow_file != st.session_state.get("prev_inflow"):
+    st.session_state.prev_inflow = inflow_file
+
+if "prev_outflow" not in st.session_state or outflow_file != st.session_state.get("prev_outflow"):
+    st.session_state.prev_outflow = outflow_file
+
+if inflow_file is not None and outflow_file is not None:
+    try:
+        df_incoming = pd.read_csv(inflow_file)
+    except pd.errors.EmptyDataError:
+        st.error("❌ Inflow file is empty or has no valid columns.")
+        st.stop()
+    try:
+        df_outgoing = pd.read_csv(outflow_file)
+    except pd.errors.EmptyDataError:
+        st.error("❌ Outflow file is empty or has no valid columns.")
+        st.stop()
+
+    required_columns = [
+        "Transaction_Ref", "Sender_BIC", "Receiver_BIC", "Amount", "Currency",
+        "Transaction_Date", "Beneficiary_Name", "Beneficiary_Account", "Payment_Purpose"
+    ]
+
+    missing_in = [col for col in required_columns if col not in df_incoming.columns]
+    missing_out = [col for col in required_columns if col not in df_outgoing.columns]
+
+    if missing_in or missing_out:
+        st.error(f"""
+❌ Required columns are missing or misnamed:
+
+🔍 Missing in Inflow File: {', '.join(missing_in) if missing_in else '✅ All OK'}
+🔍 Missing in Outflow File: {', '.join(missing_out) if missing_out else '✅ All OK'}
+
+✅ Please ensure **both** files have exact column names like:
+- Transaction_Ref
+- Sender_BIC
+- Receiver_BIC
+- Amount
+- Currency
+- Transaction_Date
+- Beneficiary_Name
+- Beneficiary_Account
+- Payment_Purpose
+        """)
+        st.stop()
+
+    df_incoming = df_incoming.loc[:, ~df_incoming.columns.duplicated()]
+    df_outgoing = df_outgoing.loc[:, ~df_outgoing.columns.duplicated()]
+
+    # ✅ FIELD CHECKBOXES
+    st.markdown("### ⚙️ Select Fields for Reconciliation")
+    field_options = [
+        "Amount", "Currency", "Sender_BIC", "Receiver_BIC",
+        "Transaction_Date", "Beneficiary_Name", "Beneficiary_Account", "Payment_Purpose"
+    ]
+    default_selected = ["Amount", "Currency", "Sender_BIC", "Receiver_BIC"]
+
+    cols = st.columns(4)
+    recon_fields = []
+    for i, field in enumerate(field_options):
+        with cols[i % 4]:
+            if st.checkbox(field, value=field in default_selected, key=f"chk_{field}"):
+                recon_fields.append(field)
+
+    # Merge
+    df = pd.merge(df_incoming, df_outgoing, on="Transaction_Ref", suffixes=("_in", "_out"), how="inner")
+    inflow_only = df_incoming[~df_incoming["Transaction_Ref"].isin(df_outgoing["Transaction_Ref"])]
+    outflow_only = df_outgoing[~df_outgoing["Transaction_Ref"].isin(df_incoming["Transaction_Ref"])]
+
+    df = pd.merge(df_incoming, df_outgoing, on="Transaction_Ref", suffixes=("_in", "_out"), how="inner")
+   
+    # Reconciliation Logic
+    def reconcile_row(row):
+        mismatches = []
+        if pd.isna(row["Transaction_Ref"]):
+            return "Transaction Ref Missing"
+        if "Amount" in recon_fields and row["Amount_in"] != row["Amount_out"]:
+            mismatches.append("Amount Mismatch")
+        if "Currency" in recon_fields and row["Currency_in"] != row["Currency_out"]:
+            mismatches.append("Currency Mismatch")
+        if "Sender_BIC" in recon_fields and row["Sender_BIC_in"] != row["Sender_BIC_out"]:
+            mismatches.append("Sender_BIC Mismatch")
+        if "Receiver_BIC" in recon_fields and row["Receiver_BIC_in"] != row["Receiver_BIC_out"]:
+            mismatches.append("Receiver_BIC Mismatch")
+        if "Transaction_Date" in recon_fields and row["Transaction_Date_in"] != row["Transaction_Date_out"]:
+            mismatches.append("Transaction Date Mismatch")
+        if "Beneficiary_Name" in recon_fields and row["Beneficiary_Name_in"] != row["Beneficiary_Name_out"]:
+            mismatches.append("Beneficiary Name Mismatch")
+        if "Beneficiary_Account" in recon_fields and row["Beneficiary_Account_in"] != row["Beneficiary_Account_out"]:
+            mismatches.append("Beneficiary Account Mismatch")
+        if "Payment_Purpose" in recon_fields and row["Payment_Purpose_in"] != row["Payment_Purpose_out"]:
+            mismatches.append("Payment Purpose Mismatch")
+        return "Match" if not mismatches else "Mismatch"
+
+    def generate_reason(row):
+        if row["Reconciliation_Status"] == "Match":
+            return "Not Applicable"
+        reasons = []
+        if "Amount" in recon_fields and row["Amount_in"] != row["Amount_out"]:
+            reasons.append("Amount mismatch.")
+        if "Currency" in recon_fields and row["Currency_in"] != row["Currency_out"]:
+            reasons.append("Currency mismatch.")
+        if "Sender_BIC" in recon_fields and row["Sender_BIC_in"] != row["Sender_BIC_out"]:
+            reasons.append("Sender BIC mismatch.")
+        if "Receiver_BIC" in recon_fields and row["Receiver_BIC_in"] != row["Receiver_BIC_out"]:
+            reasons.append("Receiver BIC mismatch.")
+        if "Transaction_Date" in recon_fields and row["Transaction_Date_in"] != row["Transaction_Date_out"]:
+            reasons.append("Transaction date mismatch.")
+        if "Beneficiary_Name" in recon_fields and row["Beneficiary_Name_in"] != row["Beneficiary_Name_out"]:
+            reasons.append("Beneficiary name mismatch.")
+        if "Beneficiary_Account" in recon_fields and row["Beneficiary_Account_in"] != row["Beneficiary_Account_out"]:
+            reasons.append("Beneficiary account mismatch.")
+        if "Payment_Purpose" in recon_fields and row["Payment_Purpose_in"] != row["Payment_Purpose_out"]:
+            reasons.append("Payment purpose mismatch.")
+        return " ".join(reasons)
+
+    df["Reconciliation_Status"] = df.apply(reconcile_row, axis=1)
+    df["Reconciliation_Summary"] = df.apply(generate_reason, axis=1)
+
+    # ✅ STATUS CHECKBOXES
+    st.markdown("### 📜 Select Transactions")
+    status_options = sorted(df["Reconciliation_Status"].unique())
+    status_cols = st.columns(len(status_options))
+    status_filter = []
+    for i, status in enumerate(status_options):
+        with status_cols[i]:
+            if st.checkbox(status, key=f"status_{status}"):
+                status_filter.append(status)
+
+    # ✅ SUMMARY CHECKBOXES
+    summary_filter = []
+    if status_filter == ["Match"]:
+        summary_filter = ["Not Applicable"]
+        st.markdown("🔍 Only 'Not Applicable' summaries apply for Matches.")
+    elif "Mismatch" in status_filter:
+        st.markdown("### 📝 Select Reconciliation Summary")
+        summary_options = sorted(df[df["Reconciliation_Summary"] != "Not Applicable"]["Reconciliation_Summary"].unique())
+        summary_cols = st.columns(3)
+        for i, summary in enumerate(summary_options):
+            with summary_cols[i % 3]:
+                if st.checkbox(summary, key=f"summary_{summary}"):
+                    summary_filter.append(summary)
+
+    # Apply Filters
+    filtered_df = df.copy()
+    if status_filter:
+        filtered_df = filtered_df[filtered_df["Reconciliation_Status"].isin(status_filter)]
+    if summary_filter:
+        filtered_df = filtered_df[filtered_df["Reconciliation_Summary"].isin(summary_filter)]
+
+    # KPIs
+    st.metric("Total Transactions", len(df))
+    st.metric("✅ Matches", len(df[df["Reconciliation_Status"] == "Match"]))
+    st.metric("🔴 Mismatches", len(df[df["Reconciliation_Status"] == "Mismatch"]))
+
+    # Display Filtered Table
+    st.markdown("### 📊 Transaction Results")
+    st.dataframe(filtered_df[[
+        "Transaction_Ref", "Amount_in", "Currency_in", "Amount_out", "Currency_out",
+        "Reconciliation_Status", "Reconciliation_Summary"
+    ]], use_container_width=True)
+
+    # Downloads
+    st.markdown("### 📅 Download Reconciliation Results")
+    col1, col2, col3, col4 = st.columns(4)
+
+    csv_all = df.to_csv(index=False).encode("utf-8")
+    csv_matches = df[df["Reconciliation_Status"] == "Match"].to_csv(index=False).encode("utf-8")
+    csv_mismatches = df[df["Reconciliation_Status"] == "Mismatch"].to_csv(index=False).encode("utf-8")
+    csv_filtered = filtered_df.to_csv(index=False).encode("utf-8")
+
+    with col1:
+        st.download_button("⬇️ Download All", data=csv_all, file_name="reconciliation_all.csv", mime="text/csv")
+    with col2:
+        st.download_button("✅ Download Matches", data=csv_matches, file_name="reconciliation_matches.csv", mime="text/csv")
+    with col3:
+        st.download_button("🔴 Download Mismatches", data=csv_mismatches, file_name="reconciliation_mismatches.csv", mime="text/csv")
+    with col4:
+        st.download_button("🔽️ Download Table View", data=csv_filtered, file_name="reconciliation_table_view.csv", mime="text/csv")
+
+    # Email Preview
+    st.markdown("### 📧 Sample Email Preview")
+    summary_values = sorted(df[df["Reconciliation_Summary"] != "Not Applicable"]["Reconciliation_Summary"].unique())
+    selected_summary = st.selectbox("Select Reconciliation Summary for Preview", summary_values)
+
+    email_preview_df = df[df["Reconciliation_Summary"] == selected_summary]
+    if not email_preview_df.empty:
+        txn_id = email_preview_df["Transaction_Ref"].iloc[0]
+        reason = email_preview_df["Reconciliation_Summary"].iloc[0]
+
+        email_body = f"""
+        Dear Client,
+
+        We hope this message finds you well.
+
+        Upon reconciling your recent transactions, we identified a discrepancy in Transaction Ref: **{txn_id}**.
+        The issue appears to be: **{reason}**.
+
+        Please verify and advise on further action.
+
+        Best Regards,  
+        Reconciliation Team
+        """
+        st.text_area("📨 Email Preview", value=email_body.strip(), height=200, max_chars=1000)
+    else:
+        st.info("✅ No mismatch found for selected summary.")
+
+    # Insights
+    st.markdown("## 🤖 AI Learning & Insights")
+    issue_df = df[df["Reconciliation_Summary"] != "Not Applicable"]
+    mismatch_txns = len(issue_df)
+    top_summary = issue_df["Reconciliation_Summary"].value_counts()
+    if not top_summary.empty:
+        top_count = top_summary.iloc[0]
+        top_issues = top_summary[top_summary == top_count].index.tolist()
+        if len(top_issues) == 1:
+            common_issue = top_issues[0]
+        else:
+            common_issue = "Multiple Issues"
+    else:
+        common_issue = "None"
+
+    st.markdown(f"""
+    - Out of **{len(df)}** transactions, **{mismatch_txns}** had reconciliation issues.
+    - Most frequent issue detected: **{common_issue}**.
+    - Suggests potential process review or client clarification.
+    """)
+
+    # Bar Chart
+    st.markdown("### 📊 Reconciliation Status Frequency")
+    freq_df = df["Reconciliation_Status"].value_counts().reset_index()
+    freq_df.columns = ["Status", "Count"]
+    color_map = {"Match": "#63b3ed", "Mismatch": "#f56565"}
+    colors = [color_map.get(status, "#a0aec0") for status in freq_df["Status"]]
+    fig_bar = go.Figure(data=[go.Bar(x=freq_df["Status"], y=freq_df["Count"], marker_color=colors)])
+    fig_bar.update_layout(
+        xaxis_title="Reconciliation Status",
+        yaxis_title="Count",
+        plot_bgcolor="#1a202c",
+        paper_bgcolor="#1a202c",
+        font_color="#e2e8f0"
     )
-])
+    st.plotly_chart(fig_bar)
 
-fig.update_layout(
-    xaxis_title="Reconciliation Status",
-    yaxis_title="Count",
-    plot_bgcolor="#1a202c",
-    paper_bgcolor="#1a202c",
-    font_color="#e2e8f0"
-)
+    # Pie Chart
+    st.markdown("### 🥧 Reconciliation Summary Frequency")
+    pie_df = df[df["Reconciliation_Summary"] != "Not Applicable"]["Reconciliation_Summary"].value_counts().reset_index()
+    pie_df.columns = ["Summary", "Count"]
+    fig_pie = px.pie(pie_df, names="Summary", values="Count", title="Reconciliation Summary Frequency")
+    st.plotly_chart(fig_pie)
 
-st.plotly_chart(fig)
+    # Footer
+    st.markdown("---")
+    st.markdown("**Built by Vivek Rawool | AI-Powered Reconciliation Dashboard | For Study & Demo Use Only**")
 
-
-
-# 🥧 Pie Chart of Reconciliation Status
-st.markdown("### 📊 Reconciliation Status Summary")
-summary = df['Status_Label'].value_counts().reset_index()
-summary.columns = ['Status', 'Count']
-
-fig = px.pie(summary, names='Status', values='Count', title='Reconciliation Results')
-st.plotly_chart(fig)
-
-# 📋 Summary Table
-st.markdown("### 📋 Summary Table")
-summary = summary.reset_index(drop=True)
-summary.index += 1  # Make index start from 1
-st.dataframe(summary)
-
-
-# ⬇️ Download Complete Report (All Transactions)
-st.markdown("### 📥 Download Complete Report")
-st.download_button(
-    label="📥 Download Full Report (All Data)",
-    data=df.to_csv(index=False),
-    file_name='full_reconciliation_report.csv',
-    mime='text/csv'
-)
-
-
-# 🔐 Footer
-st.markdown("---")
-st.caption("🔐 Confidential simulation – not real payment data.")
+else:
+    st.warning("⚠️ Please upload both inflow and outflow CSV files to begin reconciliation.")
